@@ -25,6 +25,16 @@
   font-display: swap;
 }
 
+
+@font-face {
+  font-family: "Nominee BlackExtended";
+  src: url("assets/Fonts/Nominee-BlackExtended.otf") format("opentype");
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: expanded;
+  font-display: swap;
+}
+
 :root {
   --page: #002a47;
   --card: #003c66;
@@ -45,6 +55,8 @@
 
 html {
   min-height: 100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   background: var(--page);
 }
 
@@ -76,30 +88,22 @@ a {
 }
 
 .intro h1 {
-  margin: 0 0 23px;
-  font-family: "Nominee", Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.intro p {
   margin: 0;
-  font-family: "Nominee", Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.22;
+  font-family: "Nominee BlackExtended", "Nominee", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.02;
 }
 
-.intro p + p {
-  margin-top: 24px;
-  font-size: 15px;
+.intro__desktop-space {
+  display: none;
 }
 
 .promo-grid {
   display: grid;
   grid-template-columns: minmax(0, 300px);
   justify-content: center;
+  align-items: start;
   gap: 10px;
   width: 100%;
 }
@@ -138,7 +142,7 @@ a {
   flex: 0 0 106.5px;
   width: 106.5px;
   height: 49px;
-  padding: 5px 7px 7px 36px;
+  padding: 6px 7px 6px 36px;
   color: var(--page);
   background: url("assets/discount_inner.svg") center / 100% 100% no-repeat;
   border-radius: 0;
@@ -147,12 +151,12 @@ a {
   line-height: 1;
 }
 
-.promo-card__discount::before {
-  content: none;
+.promo-card__discount span {
+  transform: translateY(1px);
 }
 
-.promo-card__discount--free {
-  font-size: 25px;
+.promo-card__discount::before {
+  content: none;
 }
 
 .promo-card__reveal,
@@ -163,7 +167,7 @@ a {
   justify-content: center;
   width: 100%;
   min-height: 42px;
-  border-radius: 8px;
+  border-radius: 4px;
   font-family: "Nominee", Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -204,6 +208,62 @@ a {
   stroke-width: 2;
 }
 
+.promo-card__reveal {
+  --reveal-icon-size: 15px;
+  --reveal-icon-gap: 6px;
+  --reveal-icon-x: 0px;
+  --reveal-icon-y: -1px;
+}
+
+.promo-card__reveal svg {
+  width: var(--reveal-icon-size);
+  height: var(--reveal-icon-size);
+  margin-right: var(--reveal-icon-gap);
+  transform: translate(var(--reveal-icon-x), var(--reveal-icon-y));
+}
+
+.promo-card__site {
+  --site-icon-size: 15px;
+  --site-icon-gap: 6px;
+  --site-icon-x: 0px;
+  --site-icon-y: -1px;
+  --site-text-x: 0px;
+  --site-text-y: 1px;
+}
+
+.promo-card__site svg {
+  width: var(--site-icon-size);
+  height: var(--site-icon-size);
+  margin-right: var(--site-icon-gap);
+  transform: translate(var(--site-icon-x), var(--site-icon-y));
+}
+
+.promo-card__site span {
+  display: inline-block;
+  transform: translate(var(--site-text-x), var(--site-text-y));
+}
+
+.promo-card__copy {
+  --copy-icon-size: 18px;
+  --copy-icon-gap: 6px;
+  --copy-icon-x: 0px;
+  --copy-icon-y: -1px;
+  --copy-text-x: 0px;
+  --copy-text-y: 0px;
+}
+
+.promo-card__copy svg {
+  width: var(--copy-icon-size);
+  height: var(--copy-icon-size);
+  margin-right: var(--copy-icon-gap);
+  transform: translate(var(--copy-icon-x), var(--copy-icon-y));
+}
+
+.promo-card__copy span {
+  display: inline-block;
+  transform: translate(var(--copy-text-x), var(--copy-text-y));
+}
+
 .promo-card__details {
   display: grid;
   gap: 8px;
@@ -220,27 +280,18 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 57px;
-  min-height: 57px;
+  height: 42px;
+  min-height: 42px;
   padding: 5px;
   color: var(--text);
   background: #0f5078;
-  border: 0;
-  border-radius: 8px;
+  border: 1px dashed #ffffff;
+  border-radius: 4px;
   font-family: "Nominee", Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 700;
   font-stretch: condensed;
   line-height: 1;
-  text-transform: uppercase;
-}
-
-.promo-card__code::before {
-  position: absolute;
-  inset: 5px;
-  content: "";
-  background: url("data:image/svg+xml,%3Csvg width='270' height='47' viewBox='0 0 270 47' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='269' height='46' rx='6' stroke='white' stroke-width='1' stroke-dasharray='2 2'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
-  pointer-events: none;
 }
 
 .promo-card__details p {
@@ -250,7 +301,7 @@ a {
   font-family: "Nominee", Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.4;
 }
 
 .promo-card__copy {
@@ -275,30 +326,54 @@ a {
   .promo-grid {
     grid-template-columns: repeat(2, 300px);
   }
-
-  .promo-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    justify-self: center;
-  }
 }
 
 @media (min-width: 960px) {
   .promo-grid {
     grid-template-columns: repeat(3, 300px);
   }
-
-  .promo-card:last-child:nth-child(odd) {
-    grid-column: auto;
-  }
 }
 
 @media (min-width: 1270px) {
+  .promo-card__reveal {
+    --reveal-icon-y: -2px;
+  }
+
+  .promo-card__site {
+    --site-icon-size: 16px;
+    --site-icon-gap: 6px;
+    --site-icon-x: 0px;
+    --site-icon-y: -1.2px;
+    --site-text-x: 0px;
+    --site-text-y: 0.5px;
+  }
+
+  .promo-card__copy {
+    --copy-text-x: 0px;
+    --copy-text-y: 0px;
+  }
+
   .page {
     padding-top: 96px;
   }
 
   .intro {
+    width: min(1230px, 100%);
     margin-bottom: 72px;
+  }
+
+  .intro__desktop-space {
+    display: inline;
+  }
+
+  .intro__mobile-break {
+    display: none;
+  }
+
+  .intro h1 {
+    font-size: 48px;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   .promo-grid {
@@ -306,12 +381,20 @@ a {
     gap: 10px;
   }
 
-  .promo-card:last-child:nth-child(4n + 1) {
-    grid-column: 2 / span 2;
-    justify-self: center;
+  .promo-grid.is-masonry {
+    position: relative;
+    display: block;
+    width: 1230px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .promo-grid.is-masonry .promo-card {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
-
 @media (max-width: 339px) {
   .promo-card {
     width: 100%;
@@ -323,9 +406,5 @@ a {
 
   .promo-card__discount {
     font-size: 25px;
-  }
-
-  .promo-card__discount--free {
-    font-size: 23px;
   }
 }
